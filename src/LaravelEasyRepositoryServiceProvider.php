@@ -2,9 +2,9 @@
 
 namespace Mwakalingajohn\LaravelEasyRepository;
 
+use Mwakalingajohn\LaravelEasyRepository\Commands\LaravelEasyRepositoryCommand;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
-use Mwakalingajohn\LaravelEasyRepository\Commands\LaravelEasyRepositoryCommand;
 
 class LaravelEasyRepositoryServiceProvider extends PackageServiceProvider
 {

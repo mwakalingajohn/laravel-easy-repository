@@ -3,8 +3,8 @@
 namespace Mwakalingajohn\LaravelEasyRepository\Tests;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Orchestra\Testbench\TestCase as Orchestra;
 use Mwakalingajohn\LaravelEasyRepository\LaravelEasyRepositoryServiceProvider;
+use Orchestra\Testbench\TestCase as Orchestra;
 
 class TestCase extends Orchestra
 {
