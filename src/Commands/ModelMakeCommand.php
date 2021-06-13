@@ -14,7 +14,7 @@ class ModelMakeCommand extends ConsoleModelMakeCommand
      *
      * @var string
      */
-    protected $description = 'Create new Eloquent model class';
+    protected $description = 'Create a new Eloquent model class';
 
     /**
      * Execute the console command.
@@ -23,7 +23,7 @@ class ModelMakeCommand extends ConsoleModelMakeCommand
      */
     public function handle()
     {
-        if (parent::handle() === false && ! $this->option('force')) {
+        if (parent::handle() === false && !$this->option('force')) {
             return false;
         }
 

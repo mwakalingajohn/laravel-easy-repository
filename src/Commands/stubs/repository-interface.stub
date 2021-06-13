@@ -4,7 +4,7 @@ namespace {namespace};
 
 use Mwakalingajohn\LaravelEasyRepository\Repository;
 
-class {repositoryInterfaceName} extends Repository{
+interface {repositoryInterfaceName} extends Repository{
 
     // Write something awesome :)
 }
