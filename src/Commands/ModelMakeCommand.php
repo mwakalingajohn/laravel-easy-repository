@@ -14,7 +14,7 @@ class ModelMakeCommand extends ConsoleModelMakeCommand
      *
      * @var string
      */
-    protected $description = 'Create new Eloquent model class';
+    protected $description = 'Create a new Eloquent model class';
 
     /**
      * Execute the console command.
