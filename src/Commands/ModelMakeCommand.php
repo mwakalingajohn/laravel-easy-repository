@@ -3,8 +3,8 @@
 namespace Mwakalingajohn\LaravelEasyRepository\Commands;
 
 use Illuminate\Foundation\Console\ModelMakeCommand as ConsoleModelMakeCommand;
-use Symfony\Component\Console\Input\InputOption;
 use Illuminate\Support\Str;
+use Symfony\Component\Console\Input\InputOption;
 
 class ModelMakeCommand extends ConsoleModelMakeCommand
 {
@@ -23,7 +23,7 @@ class ModelMakeCommand extends ConsoleModelMakeCommand
      */
     public function handle()
     {
-        if (parent::handle() === false && !$this->option('force')) {
+        if (parent::handle() === false && ! $this->option('force')) {
             return false;
         }
 
@@ -52,10 +52,9 @@ class ModelMakeCommand extends ConsoleModelMakeCommand
         $name = Str::studly($this->argument('name'));
 
         $this->call("make:service", [
-            "name" => $name
+            "name" => $name,
         ]);
     }
-
 
     /**
      * Create a repository
@@ -67,7 +66,7 @@ class ModelMakeCommand extends ConsoleModelMakeCommand
         $name = Str::studly($this->argument('name'));
 
         $this->call("make:repository", [
-            "name" => $name
+            "name" => $name,
         ]);
     }
 

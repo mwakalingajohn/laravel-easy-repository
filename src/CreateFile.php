@@ -48,7 +48,7 @@ class CreateFile
     /**
      * Check if file already exists
      *
-     * @return boolean
+     * @return bool
      */
     private function fileExists()
     {
@@ -79,6 +79,7 @@ class CreateFile
         foreach ($this->stubProperties as $replacer => $replaceBy) {
             $stub = str_replace($replacer, $replaceBy, $stub);
         }
+
         return $stub;
     }
 
