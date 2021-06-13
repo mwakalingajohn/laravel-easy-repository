@@ -3,23 +3,46 @@
 namespace Mwakalingajohn\LaravelEasyRepository;
 
 use Mwakalingajohn\LaravelEasyRepository\Commands\LaravelEasyRepositoryCommand;
+use Mwakalingajohn\LaravelEasyRepository\Commands\MakeRepository;
+use Mwakalingajohn\LaravelEasyRepository\Commands\MakeService;
+use Spatie\LaravelPackageTools\Exceptions\InvalidPackage;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
 
 class LaravelEasyRepositoryServiceProvider extends PackageServiceProvider
 {
+
+    public function register()
+    {
+        $this->registeringPackage();
+
+        $this->package = new Package();
+
+        $this->package->setBasePath($this->getPackageBaseDir());
+
+        $this->configurePackage($this->package);
+
+        if (empty($this->package->name)) {
+            throw InvalidPackage::nameIsRequired();
+        }
+
+        foreach ($this->package->configFileNames as $configFileName) {
+            $this->mergeConfigFrom($this->package->basePath("/../config/{$configFileName}.php"), $configFileName);
+        }
+
+        $this->mergeConfigFrom(__DIR__ . "/../config/easy-repository-sys.php", "easy-repository");
+
+        $this->packageRegistered();
+
+        return $this;
+    }
+
     public function configurePackage(Package $package): void
     {
-        /*
-         * This class is a Package Service Provider
-         *
-         * More info: https://github.com/spatie/laravel-package-tools
-         */
         $package
             ->name('laravel-easy-repository')
             ->hasConfigFile()
-            ->hasViews()
-            ->hasMigration('create_laravel-easy-repository_table')
-            ->hasCommand(LaravelEasyRepositoryCommand::class);
+            ->hasCommand(MakeRepository::class)
+            ->hasCommand(MakeService::class);
     }
 }

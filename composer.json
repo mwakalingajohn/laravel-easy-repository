@@ -16,7 +16,7 @@
         }
     ],
     "require": {
-        "php": "^8.0",
+        "php": "^7.4",
         "spatie/laravel-package-tools": "^1.4.3",
         "illuminate/contracts": "^8.37"
     },
@@ -50,7 +50,8 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Mwakalingajohn\\LaravelEasyRepository\\LaravelEasyRepositoryServiceProvider"
+                "Mwakalingajohn\\LaravelEasyRepository\\LaravelEasyRepositoryServiceProvider",
+                "Mwakalingajohn\\LaravelEasyRepository\\RepositoryServiceProvider"
             ],
             "aliases": {
                 "LaravelEasyRepository": "Mwakalingajohn\\LaravelEasyRepository\\LaravelEasyRepositoryFacade"

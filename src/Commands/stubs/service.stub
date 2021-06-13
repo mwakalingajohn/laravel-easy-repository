@@ -1,0 +1,17 @@
+<?php
+
+namespace {namespace};
+
+use Mwakalingajohn\LaravelEasyRepository\Service;
+
+class {serviceName} extends Service{
+
+    /**
+    * The repository interface to use in this service. Will allow to use within
+    * methods $this->repository. It will be resolved from the container
+    * @property string $repositoryInterface;
+    */
+    protected string $repositoryInterface = "{repositoryInterfaceNamespace}\{repositoryInterface}";
+
+    // Define your custom methods :)
+}

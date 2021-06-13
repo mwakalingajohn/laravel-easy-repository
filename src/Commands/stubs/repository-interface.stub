@@ -1,0 +1,10 @@
+<?php
+
+namespace {namespace};
+
+use Mwakalingajohn\LaravelEasyRepository\Repository;
+
+class {repositoryInterfaceName} extends Repository{
+
+    // Write something awesome :)
+}

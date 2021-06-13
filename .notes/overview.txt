@@ -1,0 +1,13 @@
+Repositories
+    Interfaces
+        CarRepositoryInterface
+    Eloquent
+        EloquentRepository implements BaseRepository
+        CarRepository extends EloquentRepository implements CarRepositoryInterface
+
+Services
+    CarService extends BaseService
+        call CarRepositoryInterface
+
+
+on make repository show if eloquent or not
