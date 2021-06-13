@@ -1,12 +1,12 @@
 <?php
 
-namespace VendorName\Skeleton\Commands;
+namespace Mwakalingajohn\LaravelEasyRepository\Commands;
 
 use Illuminate\Console\Command;
 
-class SkeletonCommand extends Command
+class LaravelEasyRepositoryCommand extends Command
 {
-    public $signature = 'skeleton';
+    public $signature = 'laravel-easy-repository';
 
     public $description = 'My command';
 

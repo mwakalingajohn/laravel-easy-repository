@@ -1,17 +1,17 @@
 {
-    "name": "vendor_slug/package_slug",
-    "description": ":package_description",
+    "name": "mwakalingajohn/laravel-easy-repository",
+    "description": "Simple repository pattern for larave, with services!",
     "keywords": [
-        ":vendor_name",
+        "mwakalingajohn",
         "laravel",
-        "package_slug"
+        "laravel-easy-repository"
     ],
-    "homepage": "https://github.com/vendor_slug/package_slug",
+    "homepage": "https://github.com/mwakalingajohn/laravel-easy-repository",
     "license": "MIT",
     "authors": [
         {
-            "name": ":author_name",
-            "email": "author@domain.com",
+            "name": "John Mwakalinga",
+            "email": "mwakalingajohn@gmail.com",
             "role": "Developer"
         }
     ],
@@ -30,13 +30,13 @@
     },
     "autoload": {
         "psr-4": {
-            "VendorName\\Skeleton\\": "src",
-            "VendorName\\Skeleton\\Database\\Factories\\": "database/factories"
+            "Mwakalingajohn\\LaravelEasyRepository\\": "src",
+            "Mwakalingajohn\\LaravelEasyRepository\\Database\\Factories\\": "database/factories"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "VendorName\\Skeleton\\Tests\\": "tests"
+            "Mwakalingajohn\\LaravelEasyRepository\\Tests\\": "tests"
         }
     },
     "scripts": {
@@ -50,10 +50,10 @@
     "extra": {
         "laravel": {
             "providers": [
-                "VendorName\\Skeleton\\SkeletonServiceProvider"
+                "Mwakalingajohn\\LaravelEasyRepository\\LaravelEasyRepositoryServiceProvider"
             ],
             "aliases": {
-                "Skeleton": "VendorName\\Skeleton\\SkeletonFacade"
+                "LaravelEasyRepository": "Mwakalingajohn\\LaravelEasyRepository\\LaravelEasyRepositoryFacade"
             }
         }
     },
