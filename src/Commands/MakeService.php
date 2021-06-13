@@ -34,9 +34,10 @@ class MakeService extends Command
      */
     public function createService(string $className)
     {
+        $serviceName = $className . config("easy-repository.service_suffix");
         $stubProperties = [
             "{namespace}" => config("easy-repository.service_namespace"),
-            "{serviceName}" => $className . config("easy-repository.service_suffix"),
+            "{serviceName}" => $serviceName,
             "{repositoryInterface}" => $this->getRepositoryInterfaceName($className),
             "{repositoryInterfaceNamespace}" => $this->getRepositoryInterfaceNamespace($className)
         ];
@@ -46,6 +47,9 @@ class MakeService extends Command
             $this->getServicePath($className),
             __DIR__ . "/stubs/service.stub"
         );
+
+
+        $this->line("<info>Created service:</info> {$serviceName}");
     }
 
     /**

@@ -5,6 +5,7 @@ namespace Mwakalingajohn\LaravelEasyRepository;
 use Mwakalingajohn\LaravelEasyRepository\Commands\LaravelEasyRepositoryCommand;
 use Mwakalingajohn\LaravelEasyRepository\Commands\MakeRepository;
 use Mwakalingajohn\LaravelEasyRepository\Commands\MakeService;
+use Mwakalingajohn\LaravelEasyRepository\Commands\ModelMakeCommand;
 use Spatie\LaravelPackageTools\Exceptions\InvalidPackage;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
@@ -34,6 +35,8 @@ class LaravelEasyRepositoryServiceProvider extends PackageServiceProvider
 
         $this->packageRegistered();
 
+        $this->overrideCommands();
+
         return $this;
     }
 
@@ -44,5 +47,13 @@ class LaravelEasyRepositoryServiceProvider extends PackageServiceProvider
             ->hasConfigFile()
             ->hasCommand(MakeRepository::class)
             ->hasCommand(MakeService::class);
+    }
+
+    public function overrideCommands()
+    {
+
+        $this->app->extend('command.model.make', function () {
+            return app()->make(ModelMakeCommand::class);
+        });
     }
 }

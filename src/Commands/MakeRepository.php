@@ -14,7 +14,8 @@ class MakeRepository extends Command
 
     public $signature = 'make:repository
         {name : The name of the repository }
-        {--other : If not put, it will create an eloquent repository}?';
+        {--other : If not put, it will create an eloquent repository}?
+        {--service : Create a service along with the repository}?';
 
     public $description = 'Create a new repository class';
 
@@ -26,6 +27,8 @@ class MakeRepository extends Command
     public function handle()
     {
         $name = str_replace(config("easy-repository.repository_suffix"), "", $this->argument("name"));
+        $name = Str::studly($name);
+
         $other = $this->option("other");
 
         $className = Str::studly($name);
@@ -34,12 +37,31 @@ class MakeRepository extends Command
 
         // First we create the repoisitory interface in the interfaces directory
         // This will be implemented by the interface class
-        $repositoryInterface = $this->createRepositoryInterface($className);
+        $this->createRepositoryInterface($className);
 
 
         // Second we create the repoisitory directory
         // This will be implement by the interface class
-        $repositoryName = $this->createRepository($className, !$other);
+        $this->createRepository($className, !$other);
+
+        if ($this->option('service')) {
+            $this->createService();
+        }
+    }
+
+    /**
+     * Create service for the repository
+     *
+     * @return void
+     */
+    private function createService()
+    {
+        $name = str_replace(config("easy-repository.repository_suffix"), "", $this->argument("name"));
+        $name = Str::studly($name);
+
+        $this->call("make:service", [
+            "name" => $name
+        ]);
     }
 
     /**
@@ -50,11 +72,11 @@ class MakeRepository extends Command
      */
     public function createRepositoryInterface(string $className)
     {
-        $this->info("Creating $className repository interface..");
         $repositoryInterfaceNamespace = config("easy-repository.repository_namespace") . "\Interfaces";
+        $repositoryInterfaceName = $className . config("easy-repository.repository_interface_suffix");
         $stubProperties = [
             "{namespace}" => $repositoryInterfaceNamespace,
-            "{repositoryInterfaceName}" => $className . config("easy-repository.repository_interface_suffix")
+            "{repositoryInterfaceName}" => $repositoryInterfaceName
         ];
 
         $repositoryInterfacePath = $this->getRepositoryInterfacePath($className);
@@ -65,7 +87,7 @@ class MakeRepository extends Command
             __DIR__ . "/stubs/repository-interface.stub"
         );
 
-        $this->line("Created $className repository interface: " . $repositoryInterfacePath);
+        $this->line("<info>Created $className repository interface:</info> " . $repositoryInterfaceName);
         return $repositoryInterfaceNamespace . "\\" . $className;
     }
 
@@ -77,15 +99,14 @@ class MakeRepository extends Command
      */
     private function createRepository(string $className, $isDefault = true)
     {
-        $this->info("Creating $className repository..");
-
         $repositoryNamespace = $isDefault
             ? config("easy-repository.repository_namespace") . "\\" . $this->getDefaultImplementation()
             : config("easy-repository.repository_namespace");
 
+        $repositoryName = $className . config("easy-repository.repository_suffix");
         $stubProperties = [
             "{namespace}" => $repositoryNamespace,
-            "{repositoryName}" => $className . config("easy-repository.repository_suffix"),
+            "{repositoryName}" => $repositoryName,
             "{repositoryInterfaceNamespace}" => $this->getRepositoryInterfaceNamespace($className),
             "{repositoryInterfaceName}" => $className . "RepositoryInterface"
         ];
@@ -97,7 +118,7 @@ class MakeRepository extends Command
             $repositoryPath,
             __DIR__ . "/stubs/$stubName"
         );
-        $this->line("Created $className repository: " . $repositoryPath);
+        $this->line("<info>Created $className repository:</info> " . $repositoryName);
 
         return $repositoryNamespace . "\\" . $className;
     }
