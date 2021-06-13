@@ -39,7 +39,7 @@ class MakeService extends Command
             "{namespace}" => config("easy-repository.service_namespace"),
             "{serviceName}" => $serviceName,
             "{repositoryInterface}" => $this->getRepositoryInterfaceName($className),
-            "{repositoryInterfaceNamespace}" => $this->getRepositoryInterfaceNamespace($className)
+            "{repositoryInterfaceNamespace}" => $this->getRepositoryInterfaceNamespace($className),
         ];
 
         new CreateFile(
@@ -83,7 +83,6 @@ class MakeService extends Command
     {
         return $className . "RepositoryInterface";
     }
-
 
     /**
      * Check to make sure if all required directories are available

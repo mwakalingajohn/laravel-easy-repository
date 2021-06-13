@@ -38,7 +38,7 @@ interface Repository
      * Update a model
      * @param int|mixed $id
      * @param array|mixed $data
-     * @return boolean|mixed
+     * @return bool|mixed
      */
     public function update($id, array $data);
 

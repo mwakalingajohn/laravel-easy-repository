@@ -68,7 +68,7 @@ class RepositoryServiceProvider extends ServiceProvider
     private function getRepositoryInterfaces()
     {
         $interfaces = collect([]);
-        if (!$this->files->isDirectory($directory = $this->getRepositoryInterfacesPath())) {
+        if (! $this->files->isDirectory($directory = $this->getRepositoryInterfacesPath())) {
             return $interfaces;
         }
         $files = $this->files->files($directory);
@@ -77,6 +77,7 @@ class RepositoryServiceProvider extends ServiceProvider
                 return str_replace(".php", "", $file->getFilename());
             });
         }
+
         return $interfaces;
     }
 
@@ -143,7 +144,7 @@ class RepositoryServiceProvider extends ServiceProvider
     private function getRepositoryFiles()
     {
         $repositories = collect([]);
-        if (!$this->files->isDirectory($repositoryDirectory = $this->getRepositoryCurrentImplementationPath())) {
+        if (! $this->files->isDirectory($repositoryDirectory = $this->getRepositoryCurrentImplementationPath())) {
             return $repositories;
         }
         $files = $this->files->files($repositoryDirectory);
@@ -152,18 +153,20 @@ class RepositoryServiceProvider extends ServiceProvider
                 return str_replace(".php", "", $file->getFilename());
             });
         }
+
         return $repositories;
     }
 
     /**
      * Check if config is published
      *
-     * @return boolean
+     * @return bool
      */
     private function isConfigPublished()
     {
         $path = config_path("easy-repository.php");
         $exists = file_exists($path);
+
         return $exists;
     }
 }

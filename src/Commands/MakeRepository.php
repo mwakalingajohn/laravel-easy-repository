@@ -3,7 +3,6 @@
 namespace Mwakalingajohn\LaravelEasyRepository\Commands;
 
 use Illuminate\Console\Command;
-use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\Str;
 use Mwakalingajohn\LaravelEasyRepository\AssistCommand;
 use Mwakalingajohn\LaravelEasyRepository\CreateFile;
@@ -42,7 +41,7 @@ class MakeRepository extends Command
 
         // Second we create the repoisitory directory
         // This will be implement by the interface class
-        $this->createRepository($className, !$other);
+        $this->createRepository($className, ! $other);
 
         if ($this->option('service')) {
             $this->createService();
@@ -60,7 +59,7 @@ class MakeRepository extends Command
         $name = Str::studly($name);
 
         $this->call("make:service", [
-            "name" => $name
+            "name" => $name,
         ]);
     }
 
@@ -76,7 +75,7 @@ class MakeRepository extends Command
         $repositoryInterfaceName = $className . config("easy-repository.repository_interface_suffix");
         $stubProperties = [
             "{namespace}" => $repositoryInterfaceNamespace,
-            "{repositoryInterfaceName}" => $repositoryInterfaceName
+            "{repositoryInterfaceName}" => $repositoryInterfaceName,
         ];
 
         $repositoryInterfacePath = $this->getRepositoryInterfacePath($className);
@@ -88,6 +87,7 @@ class MakeRepository extends Command
         );
 
         $this->line("<info>Created $className repository interface:</info> " . $repositoryInterfaceName);
+
         return $repositoryInterfaceNamespace . "\\" . $className;
     }
 
@@ -108,7 +108,7 @@ class MakeRepository extends Command
             "{namespace}" => $repositoryNamespace,
             "{repositoryName}" => $repositoryName,
             "{repositoryInterfaceNamespace}" => $this->getRepositoryInterfaceNamespace($className),
-            "{repositoryInterfaceName}" => $className . "RepositoryInterface"
+            "{repositoryInterfaceName}" => $className . "RepositoryInterface",
         ];
 
         $stubName = $isDefault ? "eloquent-repository.stub" : "custom-repository.stub";
@@ -152,9 +152,10 @@ class MakeRepository extends Command
      */
     private function getRepositoryPath($className, $isDefault)
     {
-        $path =  $isDefault
+        $path = $isDefault
             ? "/" . $this->getDefaultImplementation() . "/$className" . "Repository.php"
             : "/Other/$className" .  config("easy-repository.repository_suffix") . ".php";
+
         return $this->appPath() . "/" .
             config("easy-repository.repository_directory") . $path;
     }

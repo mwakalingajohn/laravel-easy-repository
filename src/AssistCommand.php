@@ -16,7 +16,6 @@ trait AssistCommand
         return app()->basePath();
     }
 
-
     /**
      * Ensure a directory exists.
      *

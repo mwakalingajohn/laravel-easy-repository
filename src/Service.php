@@ -67,7 +67,7 @@ class Service
      * Update a model
      * @param int|mixed $id
      * @param array|mixed $data
-     * @return boolean|mixed
+     * @return bool|mixed
      */
     public function update($id, array $data)
     {
@@ -91,7 +91,7 @@ class Service
     {
         if (
             $this->repositoryInterface == null ||
-            !is_string($this->repositoryInterface) ||
+            ! is_string($this->repositoryInterface) ||
             $this->repositoryInterface == ""
         ) {
             throw new Exception("Please define the repository interface");
