@@ -89,8 +89,8 @@ class RepositoryServiceProvider extends ServiceProvider
     private function getRepositoryInterfacesPath()
     {
         return $this->app->basePath() .
-            "\\" . config("easy-repository.repository_directory") .
-            "\Interfaces";
+            "/" . config("easy-repository.repository_directory") .
+            "/Interfaces";
     }
 
     /**
@@ -101,8 +101,8 @@ class RepositoryServiceProvider extends ServiceProvider
     private function getRepositoryCurrentImplementationPath()
     {
         return $this->app->basePath() .
-            "\\" . config("easy-repository.repository_directory") .
-            "\\" . config("easy-repository.current_repository_implementation");
+            "/" . config("easy-repository.repository_directory") .
+            "/" . config("easy-repository.current_repository_implementation");
     }
 
     /**
